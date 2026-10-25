@@ -142,17 +142,6 @@ export default function Experience() {
       /* Chrono + phase de la course selon la section visible */
       ScrollTrigger.create({ start: 0, end: 'max', onUpdate: (s) => hud(s.progress) });
       hud(0);
-      PHASES.forEach(([id, label]) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        ScrollTrigger.create({
-          trigger: el,
-          start: 'top 55%',
-          end: 'bottom 55%',
-          onToggle: (t) => {
-            if (t.isActive) hudPhase.textContent = label;
-          },
-        });
       });
 
       /* Intro du hero, jouée à la sortie du loader */
@@ -255,6 +244,20 @@ export default function Experience() {
           scrollTrigger: { trigger: '#programme', start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1 },
         });
       });
+
+      /* Phase de la course (créé en dernier, après les sections épinglées, pour des positions justes) */
+      PHASES.forEach(([id, label]) => {
+        const node = document.getElementById(id);
+        const el = (node?.closest('.pin-spacer') as HTMLElement | null) ?? node;
+        if (!el) return;
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 55%',
+          end: 'bottom 55%',
+          onToggle: (t) => {
+            if (t.isActive) hudPhase.textContent = label;
+          },
+        });
     });
 
     const refresh = () => ScrollTrigger.refresh();
