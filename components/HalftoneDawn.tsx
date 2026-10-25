@@ -1,7 +1,7 @@
 'use client';
 
 /*
- * Fond « aube en trame » de la section inscription.
+ * Fond « en trame » : section inscription (lumière en bas, l'aube) et section Le défi (lumière en haut, le crépuscule).
  * Adapté du composant « Halftone Flow » : même fluide en points de trame,
  * réécrit en WebGL natif (sans iframe ni scripts externes), aux couleurs Iron Kart :
  * nuit → rouille → jaune, plus lumineux en bas comme un lever de soleil sur l'horizon.
@@ -15,6 +15,7 @@ precision highp float;
 uniform vec2 res;
 uniform float time;
 uniform float grid;
+uniform float glowTop;
 mat2 rot(float a){float s=sin(a),c=cos(a);return mat2(c,-s,s,c);}
 void main(){
   vec2 uv=gl_FragCoord.xy/res;
@@ -28,7 +29,8 @@ void main(){
     f.y+=cos(f.x*1.5*i-t*.8)*.5;
   }
   float k=sin(f.x*2.+f.y*3.)*.5+.5;
-  k*=mix(1.05,.35,uv.y);
+  float v=mix(uv.y,1.-uv.y,glowTop);
+  k*=mix(1.05,.35,v);
   vec3 night=vec3(.039,.043,.063);
   vec3 rust=vec3(.62,.25,.11);
   vec3 sun=vec3(1.,.784,.118);
@@ -41,7 +43,9 @@ void main(){
   gl_FragColor=vec4(outc,1.);
 }`;
 
-export default function HalftoneDawn() {
+type Props = { glow?: 'bottom' | 'top' };
+
+export default function HalftoneDawn({ glow = 'bottom' }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -71,6 +75,7 @@ export default function HalftoneDawn() {
     const uRes = gl.getUniformLocation(prog, 'res');
     const uTime = gl.getUniformLocation(prog, 'time');
     const uGrid = gl.getUniformLocation(prog, 'grid');
+    gl.uniform1f(gl.getUniformLocation(prog, 'glowTop'), glow === 'top' ? 1 : 0);
 
     const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     const size = () => {
@@ -122,7 +127,7 @@ export default function HalftoneDawn() {
       if (raf) cancelAnimationFrame(raf);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, []);
+  }, [glow]);
 
   return <canvas className="halftone" ref={canvasRef} aria-hidden="true" />;
 }
