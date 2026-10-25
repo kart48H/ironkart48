@@ -3,7 +3,7 @@
 /*
  * Fond général du site (derrière toutes les sections) : soie en mouvement, comme un drapeau de course qui ondule.
  * Adapté du shader « Silk » (21st.dev Shader Builder) aux couleurs Iron Kart :
- * noir, reflets or et jaune #FFC81E. Curseur désactivé, résolution plafonnée,
+ * noir graphite et reflets bronze discrets, pour ne jamais gêner la lecture des textes. Curseur désactivé, résolution plafonnée,
  * pause hors écran et onglet caché, image fixe si l'utilisateur demande moins d'animations.
  */
 import { useEffect, useRef } from 'react';
@@ -280,14 +280,14 @@ void main() {
 `;
 
 const U = {
-  colors: [[0.0235, 0.0235, 0.0275], [0.0784, 0.0667, 0.0392], [0.4196, 0.3059, 0.0471], [1.0, 0.7843, 0.1176], [1.0, 0.7843, 0.1176], [1.0, 0.7843, 0.1176], [1.0, 0.7843, 0.1176], [1.0, 0.7843, 0.1176]],
+  colors: [[0.0235, 0.0235, 0.0275], [0.0471, 0.0431, 0.0392], [0.1294, 0.1137, 0.0824], [0.3059, 0.2471, 0.102], [0.3059, 0.2471, 0.102], [0.3059, 0.2471, 0.102], [0.3059, 0.2471, 0.102], [0.3059, 0.2471, 0.102]],
   colorCount: 4,
   scale: 1.94,
   intensity: 0.58,
   paramA: 0.48,
   warp: 0.042,
   detail: 2.976,
-  contrast: 1.15,
+  contrast: 1.05,
   brightness: 0.0,
   saturation: 1.0,
   hue: 0.0,

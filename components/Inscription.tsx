@@ -1,10 +1,8 @@
 import SignupForm from './SignupForm';
-import HalftoneDawn from './HalftoneDawn';
 
 export default function Inscription() {
   return (
     <section className="dawn" id="inscription">
-        <HalftoneDawn />
         <div className="wrap">
           <div className="label" style={{ color: 'rgba(244,242,236,.8)' }}>Aube · Dimanche 4 avril</div>
           <h2 className="display reveal">Quatre podiums. <em>Une seule ligne d'arrivée.</em></h2>

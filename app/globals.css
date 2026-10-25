@@ -63,7 +63,7 @@ img{display:block;max-width:100%}
 .hero-media img{width:100%;height:100%;object-fit:cover;object-position:60% 50%}
 /* Fond général : soie animée fixe derrière toutes les sections */
 .site-bg{position:fixed;inset:0;z-index:-1;background:var(--black)}
-.site-bg::after{content:"";position:absolute;inset:0;background:rgba(6,6,7,.42);pointer-events:none}
+.site-bg::after{content:"";position:absolute;inset:0;background:rgba(6,6,7,.2);pointer-events:none}
 .silk{display:block;width:100%;height:100%;opacity:0;transition:opacity 1.2s ease}
 .silk.on{opacity:1}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;
@@ -236,11 +236,6 @@ details p{margin:0 0 18px;color:var(--muted);max-width:60ch}
 .dawn{position:relative;padding-block:140px 120px;overflow:hidden}
 .dawn{isolation:isolate}
 .dawn .wrap{position:relative;z-index:2}
-.halftone{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;opacity:0;transition:opacity 1.4s ease}
-.halftone.on{opacity:1}
-.dawn::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(6,6,7,.75) 0%,rgba(6,6,7,.3) 25%,rgba(6,6,7,.25) 75%,rgba(6,6,7,.75) 100%),
-             linear-gradient(90deg,rgba(6,6,7,.5) 0%,rgba(6,6,7,0) 55%)}
 .dawn h2{margin:14px 0 0;font-size:clamp(46px,8vw,120px);max-width:12ch}
 .dawn h2 em{font-style:inherit;color:var(--yellow)}
 .dawn-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;margin-top:48px;align-items:start}
