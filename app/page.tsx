@@ -12,10 +12,14 @@ import Infos from '@/components/Infos';
 import Inscription from '@/components/Inscription';
 import Footer from '@/components/Footer';
 import Experience from '@/components/Experience';
+import SilkBackground from '@/components/SilkBackground';
 
 export default function Home() {
   return (
     <>
+      <div className="site-bg" aria-hidden="true">
+        <SilkBackground pauseWhileCovered="#hero" />
+      </div>
       <div className="grain" aria-hidden="true" />
       <Loader />
       <Nav />

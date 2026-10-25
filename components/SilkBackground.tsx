@@ -1,7 +1,7 @@
 'use client';
 
 /*
- * Fond du hero : soie en mouvement, comme un drapeau de course qui ondule.
+ * Fond général du site (derrière toutes les sections) : soie en mouvement, comme un drapeau de course qui ondule.
  * Adapté du shader « Silk » (21st.dev Shader Builder) aux couleurs Iron Kart :
  * noir, reflets or et jaune #FFC81E. Curseur désactivé, résolution plafonnée,
  * pause hors écran et onglet caché, image fixe si l'utilisateur demande moins d'animations.
@@ -302,7 +302,9 @@ const U = {
   timeScale: 0.5,
 };
 
-export default function SilkBackground() {
+type Props = { pauseWhileCovered?: string };
+
+export default function SilkBackground({ pauseWhileCovered }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -349,7 +351,7 @@ export default function SilkBackground() {
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const rw = Math.max(1, Math.round(canvas.clientWidth * dpr));
       const rh = Math.max(1, Math.round(canvas.clientHeight * dpr));
-      const k = Math.min(1, Math.sqrt(1_600_000 / (rw * rh)));
+      const k = Math.min(1, Math.sqrt(1_100_000 / (rw * rh)));
       const w = Math.max(1, Math.round(rw * k));
       const h = Math.max(1, Math.round(rh * k));
       if (canvas.width !== w || canvas.height !== h) {
@@ -375,32 +377,43 @@ export default function SilkBackground() {
 
     let raf = 0;
     let inView = true;
+    let covered = false;
     const loop = (now: number) => {
       raf = 0;
-      if (!inView || document.hidden) return;
+      if (!inView || covered || document.hidden) return;
       draw(now);
       raf = requestAnimationFrame(loop);
     };
     const kick = () => {
-      if (inView && !document.hidden && !raf) raf = requestAnimationFrame(loop);
+      if (inView && !covered && !document.hidden && !raf) raf = requestAnimationFrame(loop);
     };
     const io = new IntersectionObserver(([e]) => {
       inView = e?.isIntersecting ?? true;
       kick();
     });
     io.observe(canvas);
+    let coverIo: IntersectionObserver | null = null;
+    const cover = pauseWhileCovered ? document.querySelector(pauseWhileCovered) : null;
+    if (cover) {
+      coverIo = new IntersectionObserver(([e]) => {
+        covered = (e?.intersectionRatio ?? 0) > 0.97;
+        kick();
+      }, { threshold: [0, 0.97, 1] });
+      coverIo.observe(cover);
+    }
     document.addEventListener('visibilitychange', kick);
     kick();
 
     return () => {
       io.disconnect();
+      coverIo?.disconnect();
       document.removeEventListener('visibilitychange', kick);
       if (raf) cancelAnimationFrame(raf);
       gl.deleteBuffer(buf);
       gl.deleteProgram(program);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, []);
+  }, [pauseWhileCovered]);
 
   return <canvas className="silk" ref={canvasRef} aria-hidden="true" />;
 }

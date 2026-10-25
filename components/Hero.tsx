@@ -1,10 +1,9 @@
 import Countdown from './Countdown';
-import SilkBackground from './SilkBackground';
 
 export default function Hero() {
   return (
     <section className="hero" id="hero">
-        <div className="hero-media"><SilkBackground /></div>
+        <div className="hero-media"><img src="/images/paddock.jpg" alt="Karts alignés dans la voie des stands du Karting Roussillon" /></div>
         <div className="wrap">
           <div className="label hero-fade">Karting d'endurance · Circuit du Roussillon · Édition 2027</div>
           <h1 className="display hero-title">
