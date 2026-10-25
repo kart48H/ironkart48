@@ -1,9 +1,6 @@
-import HalftoneDawn from './HalftoneDawn';
-
 export default function Defi() {
   return (
     <section className="defi" id="defi">
-        <HalftoneDawn glow="top" />
         <div className="wrap">
           <div className="defi-grid">
             <div className="reveal">
