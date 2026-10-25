@@ -101,9 +101,33 @@ export default function Experience() {
       teleLight.textContent = p < 0.3 ? 'Crépuscule' : 'Nuit';
     };
 
+    /* ---------- Ouverture : trous du voile alignés sur les cercles des jours ---------- */
+    const veil = byId<SVGSVGElement>('heroVeil');
+    const holes = Array.from(document.querySelectorAll<SVGCircleElement>('.hero-hole'));
+    const rings = Array.from(document.querySelectorAll<HTMLElement>('.hero-ring'));
+    const veilState = { grow: 1 };
+    const layoutHoles = () => {
+      const far = Math.max(innerWidth, innerHeight) * 1.8;
+      const top = veil.getBoundingClientRect().top - (veil.parentElement as HTMLElement).getBoundingClientRect().top;
+      rings.forEach((ring, i) => {
+        const hole = holes[i];
+        if (!hole) return;
+        const r = ring.offsetWidth / 2;
+        hole.setAttribute('cx', String(ring.offsetLeft + r));
+        hole.setAttribute('cy', String(ring.offsetTop + r - top));
+        hole.setAttribute('r', String(Math.max(0, r - 1 + veilState.grow * far)));
+      });
+    };
+    const onResize = () => layoutHoles();
+    window.addEventListener('resize', onResize);
+    cleanups.push(() => window.removeEventListener('resize', onResize));
+
     /* ---------- Mouvement réduit : tout est affiché, rien ne bouge ---------- */
     if (reduce) {
       circuit(1);
+      veilState.grow = 0;
+      veil.style.visibility = 'visible';
+      layoutHoles();
       byId('night').setAttribute('opacity', '.55');
       glow.style.opacity = '.4';
       document.querySelectorAll<HTMLElement>('.k-specs,.k-tag').forEach((e) => (e.style.opacity = '1'));
@@ -115,6 +139,7 @@ export default function Experience() {
       window.addEventListener('scroll', onScroll, { passive: true });
       return () => {
         window.removeEventListener('scroll', onScroll);
+        cleanups.forEach((fn) => fn());
         root.classList.remove('js');
       };
     }
@@ -168,18 +193,25 @@ export default function Experience() {
       };
       if (started) intro();
 
-      /* Hero au scroll */
-      gsap.to('.hero-media', {
-        yPercent: 14,
-        ease: 'none',
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-      });
-      gsap.to('.hero .wrap', {
-        yPercent: -12,
-        autoAlpha: 0.25,
-        ease: 'none',
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-      });
+      /* Ouverture au scroll : la photo zoome, le titre s'écarte, puis le voile se referme en quatre cercles */
+      gsap.set(veil, { top: '-100%', height: '200%' });
+      layoutHoles();
+      const ringKids = rings.flatMap((r) => Array.from(r.children));
+      gsap
+        .timeline({
+          defaults: { ease: 'none' },
+          scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom bottom', scrub: 0.5, invalidateOnRefresh: true, onRefresh: layoutHoles },
+        })
+        .fromTo('.hero-zoom', { scale: 1, y: 0 }, { scale: 1.18, y: () => innerHeight * (innerWidth < 861 ? 0.3 : 0.1), duration: 1 }, 0)
+        .to('.hero-title .line:first-child', { x: () => -innerWidth * 0.75, duration: 0.55, ease: 'power1.in' }, 0)
+        .to('.hero-title .sub', { x: () => innerWidth * 0.8, duration: 0.55, ease: 'power1.in' }, 0)
+        .to('.hero-up', { y: () => -innerHeight * 0.22, opacity: 0, duration: 0.35 }, 0)
+        .to('.hero-low', { y: () => -innerHeight * 0.12, opacity: 0, duration: 0.3 }, 0.02)
+        .fromTo(veil, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.02 }, 0.26)
+        .fromTo(veilState, { grow: 1 }, { grow: 0, duration: 0.72, ease: 'power2.inOut', onUpdate: layoutHoles }, 0.28)
+        .fromTo(rings, { scale: 0.35, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, stagger: { each: 0.05, from: 'center' }, ease: 'power2.out' }, 0.62)
+        .fromTo(ringKids, { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.2, stagger: 0.03 }, 0.74)
+        .fromTo('.hero-two-head, .hero-two-foot', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.25 }, 0.55);
 
       /* Départ Le Mans : les deux mots se rejoignent puis restent lisibles */
       gsap
