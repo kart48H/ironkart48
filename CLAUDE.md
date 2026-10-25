@@ -7,7 +7,8 @@ Client Propulsif. Site vitrine de la course de karting d'endurance « 48H Iron K
 - Lieu : Karting Roussillon, Mas de la Garrigue Nord, 66600 Rivesaltes — tracé 1 513 m × 9 m
 - Karts : flotte neuve de Sodi RT10 (Honda GX390, 159 kg)
 - Contact organisation : 06 62 46 19 14 · ironkart48@gmail.com · Instagram @ironkart48h
-- Dépôt : github.com/kart48H/ironkart48 — déploiement Vercel (équipe agence) à chaque push sur `main`
+- Dépôts : github.com/kart48H/ironkart48 (dépôt du client) et github.com/propulsifdev/ironkart48-site (relié à Vercel, offre Hobby). Pousser `main` sur les deux.
+- En ligne : https://ironkart48.vercel.app (projet Vercel `ironkart48`, compte propulsifdev). L'offre Hobby est non commerciale : passer en Pro ou changer d'hébergeur avant la mise en ligne officielle.
 
 ## Stack
 - Next.js 16 (App Router), React 19, TypeScript, CSS global (`app/globals.css`)
