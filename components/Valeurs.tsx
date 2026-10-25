@@ -1,6 +1,9 @@
+import TubesLights from './TubesLights';
+
 export default function Valeurs() {
   return (
     <section className="valeurs" id="valeurs">
+        <TubesLights />
         <div className="wrap">
           <div className="label label-y">Ce qui nous anime</div>
           <h2 className="display">Nos valeurs</h2>
