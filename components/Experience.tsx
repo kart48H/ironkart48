@@ -10,20 +10,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 
-const RACE_SECONDS = 48 * 3600;
-const PHASES: Array<[string, string]> = [
-  ['hero', 'Jour'],
-  ['defi', 'Jour'],
-  ['depart', 'Crépuscule'],
-  ['circuit', 'Crépuscule'],
-  ['kart', 'Nuit'],
-  ['programme', 'Nuit'],
-  ['valeurs', 'Nuit'],
-  ['infos', 'Nuit'],
-  ['inscription', 'Aube'],
-];
-
-const pad = (n: number) => (n < 10 ? '0' : '') + n;
 const byId = <T extends Element = HTMLElement>(id: string) => document.getElementById(id) as unknown as T;
 
 export default function Experience() {
@@ -34,12 +20,10 @@ export default function Experience() {
     const timers: number[] = [];
     const cleanups: Array<() => void> = [];
 
-    /* ---------- HUD ---------- */
-    const hudTime = byId('hudTime');
-    const hudPhase = byId('hudPhase');
+    /* ---------- Barre de course (progression des 48 h au fil du scroll) ---------- */
+    const raceFill = byId('raceFill');
     const hud = (p: number) => {
-      const s = Math.round(RACE_SECONDS * (1 - p));
-      hudTime.textContent = `${pad(Math.floor(s / 3600))}:${pad(Math.floor((s % 3600) / 60))}:${pad(s % 60)}`;
+      raceFill.style.transform = `scaleX(${Math.min(1, Math.max(0, p)).toFixed(4)})`;
     };
 
     /* ---------- Loader ---------- */
@@ -139,10 +123,9 @@ export default function Experience() {
     anchors.forEach((a) => a.addEventListener('click', onAnchor));
 
     const ctx = gsap.context(() => {
-      /* Chrono + phase de la course selon la section visible */
+      /* Barre de course */
       ScrollTrigger.create({ start: 0, end: 'max', onUpdate: (s) => hud(s.progress) });
       hud(0);
-      });
 
       /* Intro du hero, jouée à la sortie du loader */
       gsap.set('.hero-title .line>span', { yPercent: 110 });
@@ -245,19 +228,6 @@ export default function Experience() {
         });
       });
 
-      /* Phase de la course (créé en dernier, après les sections épinglées, pour des positions justes) */
-      PHASES.forEach(([id, label]) => {
-        const node = document.getElementById(id);
-        const el = (node?.closest('.pin-spacer') as HTMLElement | null) ?? node;
-        if (!el) return;
-        ScrollTrigger.create({
-          trigger: el,
-          start: 'top 55%',
-          end: 'bottom 55%',
-          onToggle: (t) => {
-            if (t.isActive) hudPhase.textContent = label;
-          },
-        });
     });
 
     const refresh = () => ScrollTrigger.refresh();

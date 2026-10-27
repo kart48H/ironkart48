@@ -50,12 +50,10 @@ img{display:block;max-width:100%}
 @media (max-width:760px){.nav-links a:not(.nav-cta){display:none}}
 
 /* ---------- HUD ---------- */
-.hud{position:fixed;z-index:40;right:var(--gutter-r);bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;font-family:var(--f-mono);
-  background:rgba(6,6,7,.72);border:1px solid rgba(255,200,30,.5);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-.hud-phase{background:var(--yellow);color:var(--black);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;display:grid;place-items:center;padding:0 12px;min-width:100px}
-.hud-time{padding:7px 14px 8px;font-size:21px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.05}
-.hud-time small{display:block;font-size:9px;font-weight:400;letter-spacing:.2em;color:var(--muted)}
-@media (max-width:600px){.hud-phase{min-width:0;padding:0 9px;font-size:9px}.hud-time{font-size:16px;padding:6px 10px}}
+
+/* ---------- Barre de course ---------- */
+.race-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;height:calc(3px + env(safe-area-inset-bottom,0px));background:rgba(244,242,236,.10);pointer-events:none}
+.race-fill{position:absolute;left:0;top:0;width:100%;height:3px;background:var(--yellow);transform:scaleX(0);transform-origin:0 50%;box-shadow:0 0 12px rgba(255,200,30,.6);will-change:transform}
 
 /* ---------- Hero (jour) ---------- */
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
