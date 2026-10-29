@@ -2,6 +2,7 @@ import Loader from '@/components/Loader';
 import Nav from '@/components/Nav';
 import Hud from '@/components/Hud';
 import Hero from '@/components/Hero';
+import Sommaire from '@/components/Sommaire';
 import Defi from '@/components/Defi';
 import LeMans from '@/components/LeMans';
 import Circuit from '@/components/Circuit';
@@ -26,6 +27,7 @@ export default function Home() {
       <Hud />
       <main id="top">
         <Hero />
+        <Sommaire />
         <Defi />
         <LeMans />
         <Circuit />
