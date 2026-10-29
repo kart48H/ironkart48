@@ -25,9 +25,9 @@ export default function Home() {
       <Loader />
       <Nav />
       <Hud />
+      <Sommaire />
       <main id="top">
         <Hero />
-        <Sommaire />
         <Defi />
         <LeMans />
         <Circuit />
