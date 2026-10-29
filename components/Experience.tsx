@@ -59,30 +59,21 @@ export default function Experience() {
     const dot = byId<SVGCircleElement>('dot');
     const dotGlow = byId<SVGCircleElement>('dotGlow');
     const teleDist = byId('teleDist');
-    const teleLap = byId('teleLap');
-    const teleLight = byId('teleLight');
     const L = run.getTotalLength();
     run.style.strokeDasharray = String(L);
     glow.style.strokeDasharray = String(L);
+    /* Un seul tour : la ligne se dessine au fil du scroll, le point suit sa tête ; les 10 % finaux laissent le tour bouclé à l'écran */
     const circuit = (p: number) => {
-      const draw = Math.min(1, p / 0.62);
-      const off = String(L * (1 - draw));
+      const lapP = Math.min(1, p / 0.9);
+      const off = String(L * (1 - lapP));
       run.style.strokeDashoffset = off;
       glow.style.strokeDashoffset = off;
-      let lapP = p < 0.62 ? draw : (((p - 0.62) / 0.38) * 2) % 1;
-      let lap = p < 0.62 ? 1 : Math.min(3, 2 + Math.floor(((p - 0.62) / 0.38) * 2));
-      if (p >= 1) {
-        lapP = 1;
-        lap = 3;
-      }
       const pt = run.getPointAtLength(L * lapP);
       dot.setAttribute('cx', String(pt.x));
       dot.setAttribute('cy', String(pt.y));
       dotGlow.setAttribute('cx', String(pt.x));
       dotGlow.setAttribute('cy', String(pt.y));
       teleDist.textContent = Math.round(1513 * lapP).toLocaleString('fr-FR');
-      teleLap.textContent = String(lap);
-      teleLight.textContent = p < 0.3 ? 'Crépuscule' : 'Nuit';
     };
 
     /* ---------- Mouvement réduit : tout est affiché, rien ne bouge ---------- */
@@ -172,7 +163,7 @@ export default function Experience() {
       const cs = { p: 0 };
       circuit(0);
       gsap
-        .timeline({ scrollTrigger: { trigger: '#circuit', start: 'top top', end: '+=230%', pin: true, scrub: 1, anticipatePin: 1 } })
+        .timeline({ scrollTrigger: { trigger: '#circuit', start: 'top top', end: '+=180%', pin: true, scrub: 1, anticipatePin: 1 } })
         .to(cs, { p: 1, duration: 1, ease: 'none', onUpdate: () => circuit(cs.p) }, 0)
         .to('#dusk', { attr: { opacity: 0 }, duration: 0.5, ease: 'none' }, 0)
         .to('#night', { attr: { opacity: 0.72 }, duration: 0.6, ease: 'none' }, 0.15)

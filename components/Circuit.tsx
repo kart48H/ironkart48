@@ -23,8 +23,6 @@ export default function Circuit() {
             <dl className="map-tele">
               <div className="tele"><dt>Distance</dt><dd><span id="teleDist">1 513</span><small>m</small></dd></div>
               <div className="tele"><dt>Largeur</dt><dd>9<small>m</small></dd></div>
-              <div className="tele"><dt>Tour</dt><dd><span id="teleLap">1</span></dd></div>
-              <div className="tele"><dt>Lumière</dt><dd id="teleLight">Jour</dd></div>
             </dl>
           </div>
         </div>

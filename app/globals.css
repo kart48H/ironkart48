@@ -115,13 +115,12 @@ img{display:block;max-width:100%}
 .map svg{display:block;width:100%;height:auto}
 .track-glow{fill:none;stroke:var(--yellow);stroke-width:22;stroke-linejoin:round;stroke-linecap:round;opacity:0}
 .track-run{fill:none;stroke:var(--yellow);stroke-width:6;stroke-linejoin:round;stroke-linecap:round}
-.map-tele{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--faint);background:rgba(6,6,7,.6)}
+.map-tele{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--faint);background:rgba(6,6,7,.6)}
 .tele{padding:14px 16px;border-right:1px solid var(--faint)}
 .tele:last-child{border-right:0}
 .tele dt{font:600 10px/1.3 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
 .tele dd{margin:6px 0 0;font:italic 900 clamp(24px,3vw,44px)/1 var(--f-display);font-stretch:118%;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 .tele dd small{font:600 12px var(--f-mono);font-style:normal;letter-spacing:.06em;color:var(--muted);margin-left:5px}
-@media (max-width:760px){.map-tele{grid-template-columns:repeat(2,minmax(0,1fr))}.tele:nth-child(2){border-right:0}.tele:nth-child(-n+2){border-bottom:1px solid var(--faint)}}
 
 /* ---------- Kart (nuit) : carte qui s'ouvre en plein écran ---------- */
 .kart{position:relative;height:100svh;overflow:hidden}
