@@ -25,7 +25,7 @@ export default function Infos() {
               <details><summary>Quel est l'âge minimum ?</summary><p>16 ans.</p></details>
               <details><summary>Quelle assurance faut-il ?</summary><p>Une assurance adaptée ou une licence FFSA. Les documents exacts seront précisés par l'organisation.</p></details>
               <details><summary>Combien de pilotes par équipe ?</summary><p>L'information sera publiée à l'ouverture des inscriptions.</p></details>
-              <details><summary>Quels sont les tarifs ?</summary><p>Les tarifs seront publiés à l'ouverture des inscriptions.</p></details>
+              <details><summary>Quel est le prix de l'inscription ?</summary><p>L'inscription est fixée à 9 990 €. Le détail de ce qu'elle comprend sera précisé par l'organisation.</p></details>
               <details><summary>Quels karts sont utilisés ?</summary><p>Une flotte neuve de Sodi RT10, identique pour toutes les équipes.</p></details>
             </div>
           </div>
@@ -41,6 +41,7 @@ export default function Infos() {
             <div><dt>Circuit</dt><dd>1 513 m × 9 m</dd></div>
             <div><dt>Karts</dt><dd>Sodi RT10, Honda GX390</dd></div>
             <div><dt>Âge minimum</dt><dd>16 ans</dd></div>
+            <div><dt>Inscription</dt><dd>9 990 €</dd></div>
             <div><dt>Assurance</dt><dd>Assurance adaptée ou licence FFSA</dd></div>
             <div><dt>Téléphone</dt><dd>06 62 46 19 14</dd></div>
             <div><dt>E-mail</dt><dd>ironkart48@gmail.com</dd></div>

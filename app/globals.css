@@ -260,6 +260,7 @@ details p{margin:0 0 18px;color:var(--muted);max-width:60ch}
 .dawn h2{margin:14px 0 0;font-size:clamp(46px,8vw,120px);max-width:12ch}
 .dawn h2 em{font-style:inherit;color:var(--yellow)}
 .dawn-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;margin-top:48px;align-items:start}
+.price-inline{color:var(--yellow);font-weight:700;white-space:nowrap}
 .dawn-grid p{margin:0;font-size:18px;max-width:44ch}
 .contact{margin-top:24px;display:grid;gap:6px;font:600 15px/1.4 var(--f-mono);user-select:all}
 form{background:rgba(6,6,7,.78);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);padding:28px;border-top:3px solid var(--yellow);display:grid;gap:14px}

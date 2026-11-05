@@ -23,13 +23,14 @@ Client Propulsif. Site vitrine de la course de karting d'endurance « 48H Iron K
 - Loader : tracé du logo qui se dessine (validé par le client, ne pas modifier).
 
 ## Règles de contenu
-- Ne jamais inventer : tarifs, horaires, lots, nombre de pilotes par équipe restent « à confirmer ».
+- Prix de l'inscription : 9 990 € (donné par Anthony le 5 nov. 2026 ; ce qu'il comprend et s'il est par équipe restent à confirmer).
+- Ne jamais inventer : horaires, lots, nombre de pilotes par équipe restent « à confirmer ».
 - Ne pas utiliser « première mondiale » tant que l'organisation ne l'a pas confirmé.
 - Vouvoiement, français.
 
 ## Reste à fournir par l'organisation
 - Identité de l'organisateur (mentions légales, RGPD) et validation des textes légaux
-- Horaires détaillés, tarifs, règlement, nombre de pilotes par équipe, catégories des podiums et lots
+- Horaires détaillés, contenu de l'inscription à 9 990 €, règlement, nombre de pilotes par équipe, catégories des podiums et lots
 - Rôle exact de SWS (Sodi World Series), sens précis du « départ Le Mans » à valider
 - Fichier vectoriel officiel du tracé 1 513 m (le tracé actuel est redessiné d'après la vue aérienne)
 - Photos HD (vue aérienne, paddock), visuels officiels Sodi RT10, vidéo drone si possible
