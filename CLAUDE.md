@@ -32,7 +32,7 @@ Client Propulsif. Site vitrine de la course de karting d'endurance « 48H Iron K
 - Identité de l'organisateur (mentions légales, RGPD) et validation des textes légaux
 - Horaires détaillés, contenu de l'inscription à 9 990 €, règlement, nombre de pilotes par équipe, catégories des podiums et lots
 - Rôle exact de SWS (Sodi World Series), sens précis du « départ Le Mans » à valider
-- Fichier vectoriel officiel du tracé 1 513 m (le tracé actuel est redessiné d'après la vue aérienne)
+- Fichier vectoriel officiel du tracé 1 513 m (le tracé actuel suit le dessin du vrai tracé fourni par Anthony le 14 nov. 2026, calé sur la vue aérienne ; départ sur la ligne blanche, sens validé)
 - Photos HD (vue aérienne, paddock), visuels officiels Sodi RT10, vidéo drone si possible
 - Nom de domaine et adresse e-mail de réception du formulaire
 
