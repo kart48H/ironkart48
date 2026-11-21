@@ -16,7 +16,7 @@
     "@fontsource/jetbrains-mono": "^5.3.0",
     "gsap": "^3.12.5",
     "lenis": "^1.1.13",
-    "next": "^16.4.3",
+    "next": "^16.4.6",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "threejs-components": "^0.0.19"
