@@ -4,6 +4,7 @@ import '@fontsource-variable/archivo/standard-italic.css';
 import '@fontsource/jetbrains-mono/400.css';
 import '@fontsource/jetbrains-mono/600.css';
 import './globals.css';
+import { Analytics } from '@vercel/analytics/next';
 import { ADDRESS, CONTACT, SITE_URL } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         {children}
+        <Analytics />
       </body>
     </html>
   );
